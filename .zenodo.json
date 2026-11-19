@@ -1,0 +1,27 @@
+{
+  "title": "Delegated Brand: a reference implementation of Brand as Infrastructure",
+  "upload_type": "software",
+  "description": "A template for brands that people and AI agents read from the same files: rule types, approvals bound to content, owners per rule, delegated discretion and behaviour defaults. Built to test The Delegated Brand. Follows the Open Knowledge Format v0.3. Template content under CC BY 4.0 (empty template CC0 1.0), code under Apache 2.0.",
+  "creators": [
+    {
+      "name": "Ziller, Dominik",
+      "affiliation": "DZGN Research"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "keywords": [
+    "brand as infrastructure",
+    "the delegated brand",
+    "machine-readable brand",
+    "open knowledge format",
+    "design tokens",
+    "AI agents"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://dzgn.work/brand-infrastructure-report-2026/",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-report"
+    }
+  ]
+}
