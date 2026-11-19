@@ -9,7 +9,7 @@ x-brand-visibility: internal
 status: stable
 generated: { by: "human:anna-hessling", at: "2026-10-20T10:30:00Z" }
 verified:
-  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z" }
+  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z", x-brand-hash: "sha256:417e761bee6a814d5e5095241d83c7a50f3c4612a90ca82cbaa9eb74f5caa9e5" }
 ---
 
 # Decision rights

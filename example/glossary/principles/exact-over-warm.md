@@ -8,7 +8,7 @@ x-brand-knowledge: strategic
 status: stable
 generated: { by: "human:tobias-renner", at: "2026-10-20T10:00:00Z" }
 verified:
-  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z" }
+  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z", x-brand-hash: "sha256:a1e0d482f63d587384b0c1c27de14e2d426594600d29927b2f72970e5f3c9d70" }
 stale_after: "2027-04-01T00:00:00Z"
 ---
 

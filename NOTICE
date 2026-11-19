@@ -6,7 +6,8 @@ Licensing, by part:
   bundle/                 CC0 1.0. The empty template is free to use
                           without attribution. The brand you write into
                           it is yours, under the licence you choose.
-  scripts/, .github/      Apache License 2.0 (LICENSE)
+  scripts/, tests/,
+  .github/                Apache License 2.0 (LICENSE)
   everything else         CC BY 4.0 (LICENSE-CC-BY-4.0.txt): README,
                           AGENTS.md, prompts/, evals/, workshop/,
                           example/, llms.txt, CITATION.cff

@@ -22,6 +22,7 @@
 
 - [prompts/new-brand.md](prompts/new-brand.md): set up a new brand with an agent
 - [prompts/use-brand.md](prompts/use-brand.md): brief an agent with the bundle
+- [scripts/](scripts/check_bundle.py): approve, check and export the bundle
 - [evals/rubric.md](evals/rubric.md): review checklist
 - [evals/README.md](evals/README.md): test cases
 - [Brand Infrastructure Report 2026](https://dzgn.work/brand-infrastructure-report-2026/): the frame and the evidence

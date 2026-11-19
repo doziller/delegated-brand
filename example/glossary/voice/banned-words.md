@@ -9,7 +9,7 @@ x-brand-banned-words: [timeless, artisanal, premium, experience, journey, unpara
 status: stable
 generated: { by: "human:tobias-renner", at: "2026-10-20T09:40:00Z" }
 verified:
-  - { by: "process:hessling-copy-lint", at: "2026-11-18T02:00:00Z" }
+  - { by: "process:hessling-copy-lint", at: "2026-11-18T02:00:00Z", x-brand-hash: "sha256:a15c9618e04d0e04838324c7807aef31cb313dcec65d81d9114c0f60cf6bf3b2" }
 ---
 
 # Rule

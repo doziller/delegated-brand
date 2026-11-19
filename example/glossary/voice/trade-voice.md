@@ -9,8 +9,8 @@ x-brand-owner: "human:lars-becker"
 status: stable
 generated: { by: "human:lars-becker", at: "2026-10-21T11:00:00Z" }
 verified:
-  - { by: "human:lars-becker", at: "2026-10-23T10:00:00Z" }
-  - { by: "human:tobias-renner", at: "2026-10-23T15:00:00Z" }
+  - { by: "human:lars-becker", at: "2026-10-23T10:00:00Z", x-brand-hash: "sha256:e02c74c6d2947b9cfc89b87409696f675a78247cb9487fd74b15240853fcd643" }
+  - { by: "human:tobias-renner", at: "2026-10-23T15:00:00Z", x-brand-hash: "sha256:e02c74c6d2947b9cfc89b87409696f675a78247cb9487fd74b15240853fcd643" }
 ---
 
 # Rule
@@ -22,6 +22,10 @@ In German-speaking markets, address trade customers with "Sie". Consumers may be
 # When not
 
 When a roastery's owner writes informally and personally, the reply may follow their tone. The order of information stays.
+
+# Agent may decide
+
+How formal a reply is within the "Sie" rule, and whether to add a short personal line after the facts.
 
 # Why
 

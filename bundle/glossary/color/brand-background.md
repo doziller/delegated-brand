@@ -13,6 +13,7 @@ generated: { by: "human:<your-id>", at: "2026-11-19T00:00:00Z" }
 
 Replace this section. Keep the headings below.
 
+- Under "Agent may decide", name the room an agent has inside this rule, for example "which element gets the accent". Leave it empty if there is none.
 - Say what this colour role means for the brand, in one or two sentences. Not what it looks like: the token holds that.
 - Set `x-brand-rule-type`: `limit` (mandatory, checkable), `default` (applies until a stated reason speaks against it), `principle` (binding in intent, not wording), or `preference` (to be weighed). If one part is a hard limit, for example "never as a full-page background", give it its own term with `limit`.
 - Under "When" and "When not", list where it belongs and where it does not, including the most common misuse.
@@ -22,6 +23,8 @@ Replace this section. Keep the headings below.
 # When
 
 # When not
+
+# Agent may decide
 
 # Why
 

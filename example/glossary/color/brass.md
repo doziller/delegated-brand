@@ -9,7 +9,7 @@ x-brand-knowledge: implementation
 status: stable
 generated: { by: "human:tobias-renner", at: "2026-10-20T09:00:00Z" }
 verified:
-  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z" }
+  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z", x-brand-hash: "sha256:cc0fc20f51186cbe485583a6c6b57f7eb2908f1542fcd055fb7cb966a57e4c1d" }
 stale_after: "2027-10-01T00:00:00Z"
 sources:
   - id: brand-book
@@ -27,6 +27,10 @@ One element per surface: the action we want, or the one number that matters. "Re
 - Never as a background. Brass on large areas looks like gold, and Hessling is not a luxury brand.
 - Never for text below 18 px. It fails contrast on Paper.
 - Never for warnings or errors. Those come from the design system.
+
+# Agent may decide
+
+Which element on a surface gets the brass, as long as it is the action or the number that matters most.
 
 # Why
 

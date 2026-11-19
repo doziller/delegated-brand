@@ -12,7 +12,7 @@ You need no prior knowledge. You need an AI coding agent (Claude Code, Codex, Cu
 1. **Get a copy.** On GitHub, click "Use this template", or download the repository as a ZIP and unzip it.
 2. **Look at the example.** Open `example/index.md`, then `example/core.md`. Kurbelwerk Hessling is a fictional German family manufacturer of coffee grinders, with several owners, two audiences and an agent that handles quotes. Its files show what a finished bundle looks like.
 3. **Let an agent set up your brand.** Open the folder in your agent and paste the prompt from [`prompts/new-brand.md`](prompts/new-brand.md). The agent interviews you, reads the material you give it, and drafts the rules.
-4. **Approve the rules.** Read each draft, correct it, and mark it approved. `prompts/new-brand.md` shows how.
+4. **Approve the rules.** Read each draft, correct it, and approve it with `python scripts/approve.py <rule> --by human:<your-name>`. `prompts/new-brand.md` shows how.
 5. **Use it.** Start brand tasks with [`prompts/use-brand.md`](prompts/use-brand.md). Agents then answer from your approved rules and hand everything else to you.
 
 ### Words used here
@@ -55,8 +55,10 @@ It belongs to three connected pieces of work:
 | `bundle/log.md` | Dated list of changes | Shows what changed, when, and why | Every rule change | Recommended |
 | `AGENTS.md` | Instructions for agents | Tells an agent how to read, answer, revise and fill | The whole bundle | Yes, if agents use it |
 | `prompts/` | Two ready prompts: set up a new brand, work with the brand | Lets anyone start without knowing the details | `AGENTS.md`, `bundle/` | Recommended |
-| `scripts/check_bundle.py` | A check that runs on every push | Catches broken token references, wrong field values, and approved rules changed without a new review | Glossary, tokens | Recommended |
-| `scripts/export_public.py` | Writes a copy without internal and restricted rules | Partners and public agents get only what they may see | `x-brand-visibility` | Recommended |
+| `scripts/approve.py` | Approves a rule and stores a fingerprint of its content | A later change to an approved rule becomes detectable | `verified` | Recommended |
+| `scripts/check_bundle.py` | A check that runs on every push | Catches approved rules changed after approval, broken token references and wrong field values | Glossary, tokens | Recommended |
+| `scripts/export_public.py` | Writes a copy without internal rules, internal tokens and logs | A convenience for sharing with partners. Not a security boundary: read the copy before sharing | `x-brand-visibility` | Recommended |
+| `tests/` | Regression tests for the scripts | The checks keep doing what the README says | `scripts/` | Recommended |
 | `.github/CODEOWNERS` | Who must approve changes to which files | GitHub can then block changes without the owner's approval | Owners in the bundle | Recommended on GitHub |
 | `evals/` | Test tasks with expected answers, and a review rubric | A rule is ready when agents follow it, not when it reads well | Single rules | Recommended |
 | `workshop/` | Unfinished thinking and revision proposals | Ideas need a place that agents never take as rules | Becomes a draft in `bundle/` when ready | Optional |
@@ -112,7 +114,7 @@ verified: { by: "human:jonas-berg", at: "2026-10-22T14:30:00Z" }
 | `x-brand-rule-type` | Yes | How binding: see the table below | Agents read a limit differently from a preference |
 | `status` | Recommended | `draft`, `stable`, `deprecated` | Separates approved from not yet approved |
 | `generated` | Recommended | Who wrote the current text, and when | Makes agent-written rules visible |
-| `verified` | Recommended | Who approved it, and when | A rule is authorised only after a person approves it |
+| `verified` | Recommended | Who approved it, when, and a fingerprint of the content (`x-brand-hash`), written by `approve.py` | A rule is authorised only after a person approves it, and only for the content they saw |
 | `x-brand-token` | When the rule has a value | Path to a semantic token | The value stays in one place |
 | `x-brand-knowledge` | Optional | `strategic`, `implementation`, `derived` | Derived signals must never become rules |
 | `x-brand-visibility` | Optional | `public`, `internal`, `restricted` | A partner needs the type rules, not the escalation rules |
@@ -122,6 +124,8 @@ verified: { by: "human:jonas-berg", at: "2026-10-22T14:30:00Z" }
 | `sources` | Optional | Where a rule comes from | Claims can be traced to their source |
 
 On `bundle/index.md`: `x-brand-tokens` (needed), `x-brand-owner` (needed, decides on handovers), `x-brand-visibility-default` (optional), `x-brand-assets` (optional, link to your asset library: logos, images and templates stay there).
+
+In `tokens.json`, a token or group with `"$extensions": {"x-brand-visibility": "internal"}` stays out of the public export.
 
 Fields without the `x-brand-` prefix are standard OKF v0.3.
 
@@ -158,23 +162,24 @@ pip install pyyaml
 python scripts/check_bundle.py bundle
 python path/to/open-knowledge-format/skills/okf-generate/scripts/validate.py bundle
 python scripts/export_public.py bundle public-bundle
+python -m unittest discover tests
 ```
 
 ### What is enforced, and what is only described
 
-A repository can enforce some of the governance, not all of it. Be clear about which is which.
+A repository can enforce some of the governance, not all of it.
 
 | Mechanism | How | Enforced? |
 | --- | --- | --- |
-| An approved rule changes without a new review | `check_bundle.py` fails; the last approved version in Git applies | Yes, in CI |
+| An approved rule changes after approval | `approve.py` stores a fingerprint of the content; `check_bundle.py` fails if the rule no longer matches it | Yes, in CI. But anyone who can edit files can also re-approve. Who may do that is controlled by the next line |
+| Who may change and approve which files | `.github/CODEOWNERS` plus branch protection on GitHub | Yes, once you set it up on GitHub |
 | Token references and field values | `check_bundle.py` | Yes, in CI |
-| Who may change which files | `.github/CODEOWNERS` plus branch protection on GitHub | Yes, once you set it up |
-| Internal rules reach partners | `export_public.py` writes a copy without them | Yes, if you share only the export |
-| An agent answers yes, no or handover | `AGENTS.md` | Described; depends on the agent and its tools |
-| An agent publishes or acts with money | `AGENTS.md`, behaviour rules | Described; permissions belong in the systems the agent uses |
+| Internal rules and tokens reach partners | `export_public.py` leaves out what is marked non-public | Partly. It cannot find internal facts written into public text. Read the export before sharing |
+| An agent answers yes, no or handover | `AGENTS.md` | No. Described; depends on the agent and its tools |
+| An agent publishes or acts with money | `AGENTS.md`, behaviour rules | No. Permissions belong in the systems the agent uses |
 | Whether rules contradict each other | People, evals | No |
 
-The bundle is the specification. The systems that run your agents have to respect it.
+The scripts have regression tests in `tests/` that run with every change. The bundle is the specification; the systems that run your agents have to respect it.
 
 ## What it does not do
 
@@ -246,7 +251,7 @@ Detailed guidance will follow in *A Guide to Building Brand Infrastructure*, ann
 
 ## Cite
 
-Ziller, D. (2026). *Delegated Brand: a reference implementation of Brand as Infrastructure* (Version 0.1.1). DZGN Research. https://github.com/doziller/delegated-brand
+Ziller, D. (2026). *Delegated Brand: a reference implementation of Brand as Infrastructure* (Version 0.1.2). DZGN Research. https://github.com/doziller/delegated-brand
 
 Machine-readable: `CITATION.cff`. For the frame and the evidence, cite the [Brand Infrastructure Report 2026](https://dzgn.work/brand-infrastructure-report-2026/).
 
@@ -269,7 +274,7 @@ Use it freely. Name the source where the licence asks for it.
 | Part | Licence | What it means |
 | --- | --- | --- |
 | `bundle/` (the empty template) | [CC0 1.0](LICENSE-CC0-1.0.txt) | Free to use without attribution. The brand you write into it is yours, under the licence you choose in `bundle/index.md` (all rights reserved by default) |
-| `scripts/`, `.github/` (code) | [Apache 2.0](LICENSE) | Free to use, change and ship, including commercially. Keep the licence and `NOTICE` |
+| `scripts/`, `tests/`, `.github/` (code) | [Apache 2.0](LICENSE) | Free to use, change and ship, including commercially. Keep the licence and `NOTICE` |
 | Everything else: README, `AGENTS.md`, `prompts/`, `evals/`, `workshop/`, `example/`, `llms.txt` | [CC BY 4.0](LICENSE-CC-BY-4.0.txt) | Free to use, change and share, including commercially, with attribution |
 
 Attribution for CC BY material:

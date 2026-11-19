@@ -63,7 +63,7 @@ Read the core idea, then only the row that matches your task.
 
 **Trust and lifecycle**
 
-* Human-reviewed: most rules
+* Human-reviewed: most rules, each approval bound to the rule's content with `x-brand-hash`
 * Limit confirmed by a process: [Banned words](glossary/voice/banned-words.md)
 * Draft with an interim rule: [Headline](glossary/type/headline.md), written by the quote assistant
 * Revision proposed, rule unchanged: [Paper](glossary/color/paper.md), see `workshop/revisions/example-2026-11-12-paper.md`

@@ -12,6 +12,7 @@ generated: { by: "human:<your-id>", at: "2026-11-19T00:00:00Z" }
 
 Replace this section. Keep the headings below. Copy this file once per priority and rename it.
 
+- Under "Agent may decide", name the room an agent has inside this rule, for example "which element gets the accent". Leave it empty if there is none.
 - Brand values collide in practice. Name two that do, and say which one wins.
 - Give one real situation where they collide and what the brand does.
 - Say where the priority stops: the case where B wins after all.
@@ -22,6 +23,8 @@ Replace this section. Keep the headings below. Copy this file once per priority 
 # Example
 
 # Where it stops
+
+# Agent may decide
 
 # Why
 

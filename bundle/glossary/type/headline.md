@@ -13,6 +13,7 @@ generated: { by: "human:<your-id>", at: "2026-11-19T00:00:00Z" }
 
 Replace this section. Keep the headings below.
 
+- Under "Agent may decide", name the room an agent has inside this rule, for example "which element gets the accent". Leave it empty if there is none.
 - Say what a headline must do: state, promise, ask. If the brand has a maximum length, put it in its own term with `x-brand-rule-type: limit`.
 - Give two examples that work and one that does not, with the reason.
 
@@ -21,6 +22,8 @@ Replace this section. Keep the headings below.
 # When not
 
 # Examples
+
+# Agent may decide
 
 # Why
 

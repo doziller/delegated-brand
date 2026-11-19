@@ -8,7 +8,7 @@ x-brand-knowledge: strategic
 status: stable
 generated: { by: "human:claudia-wendt", at: "2026-11-10T09:00:00Z" }
 verified:
-  - { by: "human:claudia-wendt", at: "2026-11-10T09:00:00Z" }
+  - { by: "human:claudia-wendt", at: "2026-11-10T09:00:00Z", x-brand-hash: "sha256:234de32fa7e177f07cd61035aa9e5e4bb3851595f3ba5f053dd20a2183ada008" }
 stale_after: "2027-01-31T00:00:00Z"
 ---
 

@@ -5,6 +5,17 @@ on:
   pull_request:
 
 jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Regression tests for the scripts
+        run: python -m unittest discover tests
+
   validate:
     runs-on: ubuntu-latest
     strategy:
@@ -22,7 +33,7 @@ jobs:
         run: python /tmp/okf/skills/okf-generate/scripts/validate.py ${{ matrix.bundle }}
       - name: Brand rules, approvals and token references
         run: python scripts/check_bundle.py ${{ matrix.bundle }}
-      - name: Public export has no internal rules
+      - name: Public export is still a valid bundle
         run: |
           python scripts/export_public.py ${{ matrix.bundle }} /tmp/public
           python /tmp/okf/skills/okf-generate/scripts/validate.py /tmp/public

@@ -8,8 +8,8 @@ You are using or filling a brand bundle. Read this file first.
 2. Read `bundle/core.md`, always, before anything else. Every rule applies that idea.
 3. Pick the one row in "By task" in `bundle/index.md` that matches your task and read its files fully. Do not read everything.
 4. Take every name, number, price and claim from `bundle/facts.md`, or from the authorised source it names. Never state a fact from memory, and never copy a fact that lives in another system into your output without reading it there.
-5. A rule is approved when it has `status: stable` and a `verified` entry by a `human:` actor that is not older than its `generated` date. A limit confirmed by a `process:` actor is approved as a limit. Everything else is not approved.
-6. If an approved rule's text is newer than its last review, the review no longer covers it. Use the last approved version from the Git history, and treat the newer text as a proposal.
+5. A rule is approved when it has `status: stable` and a `verified` entry by a `human:` actor whose `x-brand-hash` matches the rule's current content. A limit confirmed by a `process:` actor is approved as a limit. Everything else is not approved. `scripts/check_bundle.py` tells you which rules pass.
+6. If an approved rule changed after its approval, the approval no longer covers it. Use the last approved version from the Git history, and treat the newer text as a proposal.
 7. Read `x-brand-rule-type` before you apply a rule:
    - `limit`: mandatory. Do not cross it.
    - `default`: apply it unless a stated reason speaks against it, and say what the reason was.
@@ -32,15 +32,27 @@ Name the rules you used: the concept path and its `generated.at`, or the Git com
 
 ### Decide yourself or hand over?
 
+The bundle does not try to foresee every decision. It says which decisions are delegated to you.
+
+| Decision | Who |
+| --- | --- |
+| Apply an approved rule | You |
+| Decide within delegated discretion | You, and say what you chose |
+| Create a new shared rule, pattern or claim | The owner |
+| Change an existing rule | The owner |
+
+**Delegated discretion** is the room you are given to decide. It is written down in two places: the section "Delegated discretion" in `bundle/core.md` (applies everywhere), and the section "Agent may decide" in a single rule (applies to that rule). If a choice is inside that room, it is covered, even though no rule names the exact case.
+
 Hand over if any of these is true:
 
-- The choice would cross or bend a limit.
+- The choice is outside delegated discretion and no approved rule covers it.
+- It would cross or bend a limit.
 - It creates something others would reuse: a new pattern, a new layout type, a new claim, a campaign idea.
-- It affects a customer's money, a contract, a legal claim, or the product.
+- It affects a customer's money, a contract, a legal claim, or the product, unless a behaviour rule decides it.
 - Only a draft rule covers it.
 - Two owners' rules point in different directions.
 
-Otherwise decide yourself, and say so. Choosing between approved options, line breaks, cropping an approved photo, wording inside the voice rules: those are yours. When you had to guess something the bundle does not cover, write it down: "The bundle does not cover X. I chose Y because …". Those gaps are how the bundle improves.
+When you decide within discretion, say so in one line: "Within discretion: I chose Y because …". When you noticed a gap the bundle should close, write it down too. Those notes are how the bundle improves.
 
 ## Before you hand work back
 

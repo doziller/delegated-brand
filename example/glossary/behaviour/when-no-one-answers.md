@@ -8,8 +8,8 @@ x-brand-knowledge: strategic
 status: stable
 generated: { by: "human:lars-becker", at: "2026-11-08T10:00:00Z" }
 verified:
-  - { by: "human:anna-hessling", at: "2026-11-09T09:00:00Z" }
-  - { by: "human:claudia-wendt", at: "2026-11-09T11:00:00Z" }
+  - { by: "human:anna-hessling", at: "2026-11-09T09:00:00Z", x-brand-hash: "sha256:ede416ba61ce02fde7c0fd8fb1d30a5347c16756c7a9f231d05788ce5f78db52" }
+  - { by: "human:claudia-wendt", at: "2026-11-09T11:00:00Z", x-brand-hash: "sha256:ede416ba61ce02fde7c0fd8fb1d30a5347c16756c7a9f231d05788ce5f78db52" }
 stale_after: "2027-05-01T00:00:00Z"
 ---
 
@@ -41,6 +41,10 @@ Every quote, order and warranty message carries these, even when nobody asks and
 - No discount used to close a deal without Sales.
 - No warranty claim rejected by an agent.
 - No cross-selling in warranty or complaint replies.
+
+# Agent may decide
+
+The wording of the one message, and when during the working day it is sent. Not the default itself.
 
 # Why
 

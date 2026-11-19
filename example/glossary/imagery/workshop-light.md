@@ -8,7 +8,7 @@ x-brand-knowledge: implementation
 status: stable
 generated: { by: "human:tobias-renner", at: "2026-10-20T11:00:00Z" }
 verified:
-  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z" }
+  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z", x-brand-hash: "sha256:25c71cb96c788f23d7ed5306631f43b66cd90cdc8461b36014907251002b6bd8" }
 ---
 
 # Preference

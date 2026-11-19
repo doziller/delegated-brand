@@ -8,7 +8,7 @@ x-brand-knowledge: strategic
 status: stable
 generated: { by: "human:anna-hessling", at: "2026-10-20T08:30:00Z" }
 verified:
-  - { by: "human:tobias-renner", at: "2026-10-22T14:30:00Z" }
+  - { by: "human:tobias-renner", at: "2026-10-22T14:30:00Z", x-brand-hash: "sha256:d6b0d76eea86b1ae5ad159ccfd5d3191e1cf2ae083d7a02d1030979d50ed7d96" }
 ---
 
 # The idea
@@ -21,6 +21,17 @@ Hessling grinders are handed down. A kitchen grinder goes from parent to child; 
 - For roasteries: specifications, spare parts and service life come before adjectives ([Trade voice](glossary/voice/trade-voice.md), [Exact over warm](glossary/principles/exact-over-warm.md)).
 - For everyone: no claim we could not repeat in thirty years ([Food-contact and durability claims](glossary/claims/food-contact-and-durability.md)).
 - In behaviour: a quote, an order or a warranty claim is never decided against the customer by default ([When no one answers](glossary/behaviour/when-no-one-answers.md)).
+
+# Delegated discretion
+
+Anyone, person or agent, may decide these without asking, as long as no rule says otherwise:
+
+- Choosing between approved options, for example two approved photos or two approved headlines.
+- Wording within the voice rules, including length and order inside a paragraph.
+- Cropping, resizing and arranging approved images and assets.
+- Which product to show first on a page, based on the brief.
+
+Everything else outside the rules goes to the owner of that area.
 
 # When no rule covers the case
 

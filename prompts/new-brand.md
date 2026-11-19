@@ -37,10 +37,10 @@ Work in this order:
 ## After the agent is done
 
 1. Read each rule in `bundle/glossary/`. Change what is wrong.
-2. When a rule is right, add your approval to its header and set it to stable:
-   ```yaml
-   status: stable
-   verified: { by: "human:<your-name>", at: "<today>T12:00:00Z" }
+2. When a rule is right, approve it. The script adds your name, the time and a fingerprint of the rule's content, and sets it to stable:
    ```
+   python scripts/approve.py bundle/glossary/<rule>.md --by human:<your-name>
+   ```
+   If anyone changes the rule later, the check fails until someone approves it again.
 3. Answer the open questions. Each answer either becomes part of a rule or stays open with its interim rule.
 4. Commit the result. From now on, agents use the bundle with `prompts/use-brand.md`.

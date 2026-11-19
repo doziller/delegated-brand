@@ -9,8 +9,8 @@ x-brand-owner: "human:claudia-wendt"
 status: stable
 generated: { by: "human:claudia-wendt", at: "2026-10-24T09:00:00Z" }
 verified:
-  - { by: "human:claudia-wendt", at: "2026-10-24T09:00:00Z" }
-  - { by: "human:tobias-renner", at: "2026-10-24T16:00:00Z" }
+  - { by: "human:claudia-wendt", at: "2026-10-24T09:00:00Z", x-brand-hash: "sha256:14adc7b8b2bf0ee3a7426b3d193b8c417c4f8dc0746172f0841f5d08b07db41a" }
+  - { by: "human:tobias-renner", at: "2026-10-24T16:00:00Z", x-brand-hash: "sha256:14adc7b8b2bf0ee3a7426b3d193b8c417c4f8dc0746172f0841f5d08b07db41a" }
 stale_after: "2027-04-30T00:00:00Z"
 sources:
   - id: eu-1935-2004
