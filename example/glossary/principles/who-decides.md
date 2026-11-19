@@ -1,31 +1,37 @@
 ---
 type: Brand Decision Rights
 title: Who decides
-description: Who sets, changes, and decides on Kiln's brand rules, and what an agent hands over.
+description: Who sets, changes and decides on Hessling's brand rules, and what an agent hands over.
 tags: [principles, governance]
 x-brand-rule-type: limit
 x-brand-knowledge: strategic
 x-brand-visibility: internal
 status: stable
-generated: { by: "human:mira-lund", at: "2026-10-20T10:30:00Z" }
+generated: { by: "human:anna-hessling", at: "2026-10-20T10:30:00Z" }
 verified:
-  - { by: "human:jonas-berg", at: "2026-10-22T14:30:00Z" }
+  - { by: "human:anna-hessling", at: "2026-10-22T14:30:00Z" }
 ---
 
 # Decision rights
 
-| Question | Decides |
-| --- | --- |
-| What does Kiln promise? | human:mira-lund (founder) |
-| What does that mean at the counter, in the shop, in a reply? | human:mira-lund with the café lead |
-| Prices, refunds, legal wording | human:jonas-berg (operations) |
-| A case no approved rule covers | Handover to human:mira-lund. Agents do not decide. |
-| Changing or retiring a rule | human:mira-lund. Every change is logged with date and reason. |
+| Question | Decides | Rules this person owns |
+| --- | --- | --- |
+| What does Hessling promise? | human:anna-hessling (managing director) | Core idea |
+| How does the brand look and sound? | human:tobias-renner (head of brand), bundle owner | Colour, type, voice, imagery |
+| What a quote or trade document must contain | human:lars-becker (head of trade sales) | Trade voice |
+| What may be claimed about materials, safety and durability | human:claudia-wendt (legal and compliance) | Claims, facts |
+| Product specifications | human:mehmet-yilmaz (head of product) | Product database, not this bundle |
+| A case no approved rule covers | The owner of the area above. If unclear, the bundle owner | |
+| Two owners disagree | human:anna-hessling decides, after hearing both | |
 
 # Not delegated
 
-Replies to complaints and anything about allergens are never written by an agent alone. A person reads and sends them.
+- Discounts above 8 % on a quote.
+- Rejecting a warranty claim.
+- Any reply to a complaint that mentions safety.
+
+An agent prepares these and hands them to a person.
 
 # Why internal
 
-Partners such as the print shop need colours and type, not the escalation rules. This concept is marked `internal` and is not published with the public bundle.
+Dealers and agencies need the rules for colour, type and voice, not the escalation rules and discount thresholds. This concept is `internal` and is left out of the public export.

@@ -1,36 +1,36 @@
 ---
 type: Brand Term
 title: Headline
-description: Says one thing, in words a regular would use at the counter.
+description: Says the one thing that will still be true later.
 tags: [type]
 x-brand-token: font.headline
 x-brand-rule-type: default
 x-brand-knowledge: implementation
 status: draft
-generated: { by: "kiln-assistant/v1", at: "2026-11-12T08:20:00Z" }
+generated: { by: "hessling-quote-assistant/v2", at: "2026-11-12T08:20:00Z" }
 ---
 
 # When
 
-At the top of a page, a poster, or a menu section. One headline per surface.
+At the top of a page, a brochure, a slide or a quote cover. One headline per surface.
 
 # When not
 
-Not for prices or opening hours. Those are facts, set in body type.
+Not for prices, delivery dates or specifications. Those are facts, set in body type and taken from their source.
 
 # Examples
 
 | Works | Does not work | Why |
 | --- | --- | --- |
-| Wheel classes are back on Thursdays | Rediscover the art of making | The first says what changed. The second could be any studio. |
-| Soup until it runs out | Seasonal comfort, crafted daily | Regulars say "until it runs out". Nobody says "crafted daily". |
+| Spare parts until 2066 | Timeless quality | The first can be checked. The second could be any brand. |
+| Ground 40,000 times. Still turning. | Experience the art of grinding | Hessling shows what lasts, not what it feels like. |
 
 # Why
 
-Kiln talks like the people behind the counter. A headline that could hang in any café says nothing about this one.
+A Hessling headline should survive being read again in ten years.
 
 # Open questions
 
 | Question | Interim rule | Decides |
 | --- | --- | --- |
-| Maximum length. The agent suggests 8 words. | No limit yet. Agents hand over when a brief asks for one. | human:mira-lund |
+| Maximum length. The assistant suggests 8 words. | No limit yet. Agents hand over when a brief asks for one. | human:tobias-renner |

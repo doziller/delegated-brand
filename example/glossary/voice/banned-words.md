@@ -1,23 +1,23 @@
 ---
 type: Voice Rule
 title: Banned words
-description: Words Kiln never uses. Checked automatically on every published text.
+description: Words Hessling never uses. Checked automatically on every published text.
 tags: [voice]
 x-brand-rule-type: limit
 x-brand-knowledge: implementation
-x-brand-banned-words: [artisanal, curated, crafted, elevate, experience, journey, delighted]
+x-brand-banned-words: [timeless, artisanal, premium, experience, journey, unparalleled, iconic]
 status: stable
-generated: { by: "human:mira-lund", at: "2026-10-20T09:40:00Z" }
+generated: { by: "human:tobias-renner", at: "2026-10-20T09:40:00Z" }
 verified:
-  - { by: "process:kiln-copy-lint", at: "2026-11-18T02:00:00Z" }
+  - { by: "process:hessling-copy-lint", at: "2026-11-18T02:00:00Z" }
 ---
 
 # Rule
 
-None of the words in `x-brand-banned-words` appear in published text. The list is in the frontmatter so a linter can read it without parsing prose.
+None of the words in `x-brand-banned-words` appear in published text. The list is in the header so a linter can read it without parsing prose.
 
 # Why
 
-Each of these words is common in café and craft marketing. Using them makes Kiln sound like everyone else. See [Plain language](plain-language.md).
+Each of these words is common in coffee-equipment marketing. Using them makes Hessling sound like everyone else, and none of them can be checked. See [Plain and exact](plain-and-exact.md).
 
-This is a limit, so a process may confirm it. Changing the list is a normative revision and needs the owner.
+This is a limit, so a process may confirm it. Changing the list is a change to a shared rule and goes through the owner.

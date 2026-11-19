@@ -10,7 +10,7 @@ A template for a brand that people and AI agents read from the same files. Agent
 You need no prior knowledge. You need an AI coding agent (Claude Code, Codex, Cursor or similar) and about an hour.
 
 1. **Get a copy.** On GitHub, click "Use this template", or download the repository as a ZIP and unzip it.
-2. **Look at the example.** Open `example/index.md`, then `example/core.md`. Kiln is a fictional café brand. Its files show what a finished bundle looks like.
+2. **Look at the example.** Open `example/index.md`, then `example/core.md`. Kurbelwerk Hessling is a fictional German family manufacturer of coffee grinders, with several owners, two audiences and an agent that handles quotes. Its files show what a finished bundle looks like.
 3. **Let an agent set up your brand.** Open the folder in your agent and paste the prompt from [`prompts/new-brand.md`](prompts/new-brand.md). The agent interviews you, reads the material you give it, and drafts the rules.
 4. **Approve the rules.** Read each draft, correct it, and mark it approved. `prompts/new-brand.md` shows how.
 5. **Use it.** Start brand tasks with [`prompts/use-brand.md`](prompts/use-brand.md). Agents then answer from your approved rules and hand everything else to you.
@@ -24,7 +24,7 @@ You need no prior knowledge. You need an AI coding agent (Claude Code, Codex, Cu
 | Rule | One file in `bundle/glossary/` that says what applies, how binding it is, and why |
 | Token | A named value such as a colour or a font, kept in `tokens.json` |
 | Semantic token | A token named by its role (`brand-background`) rather than its look (`green-400`) |
-| Owner | The person who decides when no rule covers a case |
+| Owner | The person who decides when no rule covers a case. A bundle has one; single rules can name their own, for example Legal for claims |
 | Draft / approved | Written but not yet checked by a person / checked and confirmed by a person |
 | OKF | Open Knowledge Format, an open standard for knowledge as Markdown files. This template follows it |
 | Frontmatter | The short header between `---` lines at the top of each file |
@@ -55,11 +55,13 @@ It belongs to three connected pieces of work:
 | `bundle/log.md` | Dated list of changes | Shows what changed, when, and why | Every rule change | Recommended |
 | `AGENTS.md` | Instructions for agents | Tells an agent how to read, answer, revise and fill | The whole bundle | Yes, if agents use it |
 | `prompts/` | Two ready prompts: set up a new brand, work with the brand | Lets anyone start without knowing the details | `AGENTS.md`, `bundle/` | Recommended |
-| `scripts/check_bundle.py` | A check that runs on every push | Catches broken token references and wrong field values | Glossary, tokens | Recommended |
+| `scripts/check_bundle.py` | A check that runs on every push | Catches broken token references, wrong field values, and approved rules changed without a new review | Glossary, tokens | Recommended |
+| `scripts/export_public.py` | Writes a copy without internal and restricted rules | Partners and public agents get only what they may see | `x-brand-visibility` | Recommended |
+| `.github/CODEOWNERS` | Who must approve changes to which files | GitHub can then block changes without the owner's approval | Owners in the bundle | Recommended on GitHub |
 | `evals/` | Test tasks with expected answers, and a review rubric | A rule is ready when agents follow it, not when it reads well | Single rules | Recommended |
 | `workshop/` | Unfinished thinking and revision proposals | Ideas need a place that agents never take as rules | Becomes a draft in `bundle/` when ready | Optional |
 | `signals/` | What others infer about the brand, e.g. from reviews | Useful input, but never a rule | Informs people who review rules | Optional |
-| `example/` | The fictional brand Kiln, fully filled | Shows every field and state in use | Mirrors `bundle/` | Reference only |
+| `example/` | The fictional manufacturer Kurbelwerk Hessling, fully filled | Shows every field, state and owner in use | Mirrors `bundle/` | Reference only |
 | `llms.txt` | A short map of the repository for AI tools | Lets an agent find the right files quickly | All of the above | Optional |
 
 ## How it fits together
@@ -114,6 +116,7 @@ verified: { by: "human:jonas-berg", at: "2026-10-22T14:30:00Z" }
 | `x-brand-token` | When the rule has a value | Path to a semantic token | The value stays in one place |
 | `x-brand-knowledge` | Optional | `strategic`, `implementation`, `derived` | Derived signals must never become rules |
 | `x-brand-visibility` | Optional | `public`, `internal`, `restricted` | A partner needs the type rules, not the escalation rules |
+| `x-brand-owner` | Optional | Who decides on this rule, if not the bundle owner: a `human:` or `team:` actor | Legal can own claims, Sales can own quotes |
 | `stale_after` | Optional | Date for the next review | Rules get checked before they go stale |
 | `superseded_by` | With `deprecated` | Path to the replacement rule | Old links and prompts still lead somewhere |
 | `sources` | Optional | Where a rule comes from | Claims can be traced to their source |
@@ -138,7 +141,8 @@ From the Report, Table 9. Not every rule binds the same way.
 Full instructions: `AGENTS.md`. In short:
 
 - Read the core idea first, then only the files for the task. Take facts only from `facts.md`.
-- Answer from approved rules only: **yes**, **no**, or **handover** to the owner.
+- Answer from approved rules only: **yes**, **no**, or **handover** to the owner of that rule.
+- Hand over when a choice bends a limit, creates something reusable, touches money, contracts, claims or the product, or rests on a draft. Smaller craft choices are theirs, stated openly.
 - Read and produce freely. Publish only where that is delegated. Never change a shared rule.
 - When acting for a customer, follow the decided defaults in `glossary/behaviour/`. A permission is not a decision.
 - Name the rule and its version in every answer, so decisions can be traced.
@@ -153,7 +157,24 @@ The check runs automatically on GitHub after every change. To run it yourself:
 pip install pyyaml
 python scripts/check_bundle.py bundle
 python path/to/open-knowledge-format/skills/okf-generate/scripts/validate.py bundle
+python scripts/export_public.py bundle public-bundle
 ```
+
+### What is enforced, and what is only described
+
+A repository can enforce some of the governance, not all of it. Be clear about which is which.
+
+| Mechanism | How | Enforced? |
+| --- | --- | --- |
+| An approved rule changes without a new review | `check_bundle.py` fails; the last approved version in Git applies | Yes, in CI |
+| Token references and field values | `check_bundle.py` | Yes, in CI |
+| Who may change which files | `.github/CODEOWNERS` plus branch protection on GitHub | Yes, once you set it up |
+| Internal rules reach partners | `export_public.py` writes a copy without them | Yes, if you share only the export |
+| An agent answers yes, no or handover | `AGENTS.md` | Described; depends on the agent and its tools |
+| An agent publishes or acts with money | `AGENTS.md`, behaviour rules | Described; permissions belong in the systems the agent uses |
+| Whether rules contradict each other | People, evals | No |
+
+The bundle is the specification. The systems that run your agents have to respect it.
 
 ## What it does not do
 
@@ -166,7 +187,7 @@ python path/to/open-knowledge-format/skills/okf-generate/scripts/validate.py bun
 
 When an agent acts for the brand (books, charges, cancels, replies), one permission often covers several very different actions. Protocols check whether an action is valid, not whether it fits the brand. If nobody decides, the default decides, usually for whatever is quickest or earns most.
 
-`glossary/behaviour/when-no-one-answers.md` makes those defaults explicit: what happens today when no one answers, what is legally allowed, what the brand claims, and the default the brand decides. It also lists the information every transaction carries, because tone does not survive when another system rewords a message and structure does, and what the brand declines even when allowed. Kiln's version starts with one rule: if no answer arrives, nothing is charged and nothing is booked.
+`glossary/behaviour/when-no-one-answers.md` makes those defaults explicit: what happens today when no one answers, what is legally allowed, what the brand claims, and the default the brand decides. It also lists the information every transaction carries, because tone does not survive when another system rewords a message and structure does, and what the brand declines even when allowed. Hessling's version starts with one rule: nothing is charged, renewed or rejected without a person's yes.
 
 From the essay [Authority and Permission](https://dzgn.work/authority-and-permission/).
 
@@ -187,10 +208,10 @@ From the essay [Authority and Permission](https://dzgn.work/authority-and-permis
 | Four rights | Read and produce at the edge; publish only where delegated; change only through the owner |
 | Production loop | Outputs name the rules and versions they used |
 | Learning loop | Revision proposals with evidence, decided by the owner |
-| Material status | Approved rule (`stable` + `verified`), generated draft (`draft`), deliberate exception (stated in the output), retired (`deprecated`) |
+| Material status | Approved rule (`stable` + current `verified`), generated draft (`draft`), deliberate exception (stated in the output), proposed change (`workshop/revisions/`), retired (`deprecated`) |
 | Outside | Partners get concepts marked `public` |
 
-What the Diamond leaves open, the repository also leaves open: who decides when two sources disagree (for example Brand and Product), and how to notice outputs that comply but grow uniform.
+What the Diamond leaves open, the repository leaves open too: who decides when two sources disagree (for example Brand and Product), and how to notice outputs that comply but grow uniform. The Hessling example shows one possible answer to the first, escalation to the managing director. The template does not prescribe one.
 
 ## How it maps to the Report
 
@@ -225,7 +246,7 @@ Detailed guidance will follow in *A Guide to Building Brand Infrastructure*, ann
 
 ## Cite
 
-Ziller, D. (2026). *Delegated Brand: a reference implementation of Brand as Infrastructure* (Version 0.1.0). DZGN Research. https://github.com/doziller/delegated-brand
+Ziller, D. (2026). *Delegated Brand: a reference implementation of Brand as Infrastructure* (Version 0.1.1). DZGN Research. https://github.com/doziller/delegated-brand
 
 Machine-readable: `CITATION.cff`. For the frame and the evidence, cite the [Brand Infrastructure Report 2026](https://dzgn.work/brand-infrastructure-report-2026/).
 

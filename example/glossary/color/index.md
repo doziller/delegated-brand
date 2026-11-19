@@ -1,5 +1,5 @@
 # Colour
 
-* [Clay](clay.md) - Kiln's one loud colour, for the single thing that matters most on a surface
-* [Linen](linen.md) - The quiet default background that lets objects and food carry the colour
-* [Accent](accent.md) - Retired. Replaced by Clay
+* [Brass](brass.md) - The one brass element on a surface, like the crank on a grinder
+* [Paper](paper.md) - The quiet default background
+* [Signal Red](signal-red.md) - Retired. Replaced by Brass

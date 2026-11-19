@@ -20,5 +20,9 @@ jobs:
         run: git clone --depth 1 https://github.com/open-knowledge-format/open-knowledge-format /tmp/okf
       - name: OKF conformance
         run: python /tmp/okf/skills/okf-generate/scripts/validate.py ${{ matrix.bundle }}
-      - name: Brand rules and token references
+      - name: Brand rules, approvals and token references
         run: python scripts/check_bundle.py ${{ matrix.bundle }}
+      - name: Public export has no internal rules
+        run: |
+          python scripts/export_public.py ${{ matrix.bundle }} /tmp/public
+          python /tmp/okf/skills/okf-generate/scripts/validate.py /tmp/public

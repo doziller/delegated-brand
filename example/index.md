@@ -1,17 +1,24 @@
 ---
 okf_version: "0.3"
-title: Kiln brand bundle (fictional example)
-description: "Meaning, rules, and priorities of Kiln, a fictional neighbourhood ceramics studio and café. Shows a filled bundle with every rule type and trust state."
+title: Kurbelwerk Hessling brand bundle (fictional example)
+description: "Meaning, rules, priorities and behaviour of Kurbelwerk Hessling, a fictional German family manufacturer of hand-crank coffee grinders and industrial grinders. Shows a filled bundle with several owners, two audiences and an agent that acts for customers."
 license: CC-BY-4.0
 x-brand-tokens: tokens.json
-x-brand-owner: "human:mira-lund"
+x-brand-owner: "human:tobias-renner"
 x-brand-visibility-default: public
+x-brand-assets: "https://assets.hessling.example"
 ---
+
+# About this example
+
+Kurbelwerk Hessling is invented. It is a family company in its third generation, 340 people, based in Germany, exporting to 30 countries. It sells under one brand to two audiences: people who buy a hand-crank coffee grinder for their kitchen, and coffee roasteries that buy industrial grinders and spare parts. A quote assistant handles trade enquiries; an online shop sells to consumers.
+
+That gives the example what a real company has: several people with different decision rights, facts that live in other systems, two voices under one brand, legal limits on claims, and an agent that acts with money involved.
 
 # Read first
 
-* [Made upstairs, said plainly](core.md) - The one idea every other rule applies
-* [Facts](facts.md) - The only source for names, numbers, prices and claims
+* [Made to be passed on](core.md) - The one idea every other rule applies
+* [Facts](facts.md) - Where every name, number, price and claim comes from
 
 # By task
 
@@ -19,49 +26,53 @@ Read the core idea, then only the row that matches your task.
 
 | If you are making | Read |
 | --- | --- |
-| Any copy | [Plain language](glossary/voice/plain-language.md), [Banned words](glossary/voice/banned-words.md), [Clarity over charm](glossary/principles/clarity-over-charm.md), [Facts](facts.md) |
-| A layout, page or slide | [Colour](glossary/color/), [Headline](glossary/type/headline.md), tokens.json |
-| A photo brief | [Natural light](glossary/imagery/natural-light.md) |
-| A booking or payment action | [When no one answers](glossary/behaviour/when-no-one-answers.md), [Facts](facts.md) |
-| A reply to a customer | [Plain language](glossary/voice/plain-language.md), [Who decides](glossary/principles/who-decides.md), [Facts](facts.md) |
-| A decision no rule covers | [Core idea](core.md), then hand over to the owner |
+| Copy for consumers | [Plain and exact](glossary/voice/plain-and-exact.md), [Banned words](glossary/voice/banned-words.md), [Facts](facts.md) |
+| Copy for roasteries and dealers | [Plain and exact](glossary/voice/plain-and-exact.md), [Trade voice](glossary/voice/trade-voice.md), [Exact over warm](glossary/principles/exact-over-warm.md), [Facts](facts.md) |
+| Any claim about materials, safety or durability | [Food-contact and durability claims](glossary/claims/food-contact-and-durability.md), [Facts](facts.md) |
+| A layout, page, slide or packaging | [Colour](glossary/color/), [Headline](glossary/type/headline.md), tokens.json |
+| A photo brief | [Workshop light](glossary/imagery/workshop-light.md) |
+| A quote, order, payment or warranty action | [When no one answers](glossary/behaviour/when-no-one-answers.md), [Who decides](glossary/principles/who-decides.md), [Facts](facts.md) |
+| A decision no rule covers | [Core idea](core.md), then hand over to the owner of the area |
 
 # Glossary
 
-* [Colour](glossary/color/) - Clay, Linen, and the retired Accent
+* [Colour](glossary/color/) - Brass, Paper, and the retired Signal Red
 * [Type](glossary/type/) - Headline
-* [Imagery](glossary/imagery/) - Natural light
-* [Voice](glossary/voice/) - Plain language and words Kiln never uses
-* [Principles](glossary/principles/) - Clarity over charm, and who decides
-* [Behaviour](glossary/behaviour/) - If no answer arrives, nothing is charged and nothing is booked
+* [Voice](glossary/voice/) - Plain and exact, trade voice, banned words
+* [Claims](glossary/claims/) - Food-contact and durability claims. Owned by Legal
+* [Imagery](glossary/imagery/) - Workshop light
+* [Principles](glossary/principles/) - Exact over warm, and who decides
+* [Behaviour](glossary/behaviour/) - What the quote assistant and the shop do when no one answers
 
 # Signals
 
-* [Signals](signals/) - Derived knowledge about Kiln from outside. Never rules
+* [Signals](signals/) - What dealers and customers say about Hessling. Never rules
 
 # Tokens
 
-* [tokens.json](tokens.json) - Kiln's values in W3C Design Tokens format
+* [tokens.json](tokens.json) - Hessling's values in W3C Design Tokens format
 
 # What this example shows
 
 **Four rule types**
 
-* Limit: [Clay](glossary/color/clay.md), [Banned words](glossary/voice/banned-words.md), [Who decides](glossary/principles/who-decides.md), [When no one answers](glossary/behaviour/when-no-one-answers.md)
-* Default: [Linen](glossary/color/linen.md), [Headline](glossary/type/headline.md)
-* Principle: [Plain language](glossary/voice/plain-language.md), [Clarity over charm](glossary/principles/clarity-over-charm.md)
-* Preference: [Natural light](glossary/imagery/natural-light.md)
+* Limit: [Brass](glossary/color/brass.md), [Banned words](glossary/voice/banned-words.md), [Food-contact and durability claims](glossary/claims/food-contact-and-durability.md), [Who decides](glossary/principles/who-decides.md), [When no one answers](glossary/behaviour/when-no-one-answers.md)
+* Default: [Paper](glossary/color/paper.md), [Headline](glossary/type/headline.md), [Trade voice](glossary/voice/trade-voice.md)
+* Principle: [Core idea](core.md), [Plain and exact](glossary/voice/plain-and-exact.md), [Exact over warm](glossary/principles/exact-over-warm.md)
+* Preference: [Workshop light](glossary/imagery/workshop-light.md)
 
 **Trust and lifecycle**
 
-* Human-reviewed: [Clay](glossary/color/clay.md), [Clarity over charm](glossary/principles/clarity-over-charm.md)
-* Review out of date: [Linen](glossary/color/linen.md), changed by an agent after a person reviewed it
-* Machine-confirmed limit: [Banned words](glossary/voice/banned-words.md), checked by a process
-* Unverified draft with an interim rule: [Headline](glossary/type/headline.md)
-* Retired: [Accent](glossary/color/accent.md), deprecated and pointing to its replacement
+* Human-reviewed: most rules
+* Limit confirmed by a process: [Banned words](glossary/voice/banned-words.md)
+* Draft with an interim rule: [Headline](glossary/type/headline.md), written by the quote assistant
+* Revision proposed, rule unchanged: [Paper](glossary/color/paper.md), see `workshop/revisions/example-2026-11-12-paper.md`
+* Retired: [Signal Red](glossary/color/signal-red.md), pointing to its replacement
 
-**Knowledge and visibility**
+**Ownership, knowledge and visibility**
 
-* Strategic, implementation, and derived knowledge: [Plain language](glossary/voice/plain-language.md), [Clay](glossary/color/clay.md), [Perceived tone](signals/perceived-tone.md)
+* Several owners: Legal owns the claims rule, Sales owns the trade voice, Brand owns the rest
+* Facts that live elsewhere: prices come from the ERP, certificates from Legal's register
+* Strategic, implementation and derived knowledge: [Core idea](core.md), [Brass](glossary/color/brass.md), [Dealer survey](signals/dealer-survey.md)
 * Internal only: [Who decides](glossary/principles/who-decides.md)
-* Gap: the semantic token `color.text` has no brand term yet. `scripts/check_bundle.py` reports it.
+* Gaps: the semantic tokens `color.surface-industrial` and `color.text` have no brand term yet. `scripts/check_bundle.py` reports both.

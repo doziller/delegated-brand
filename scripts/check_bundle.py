@@ -9,11 +9,15 @@ Errors (exit 1):
     outside its vocabulary
   - derived knowledge (x-brand-knowledge: derived) that carries a rule type:
     information about the brand is never a rule that applies to it
+  - an approved rule whose text changed after its last review: the review no
+    longer covers the text (OKF v0.3, section 5.3). The last approved version
+    in Git applies until someone reviews the change.
+  - an x-brand-owner that is not a human: or team: actor
 
 Warnings (exit 0, or 1 with --strict):
   - a semantic token that no brand term points at
-  - a stable rule without a current human review (OKF v0.3, section 5.3);
-    limits may instead be confirmed by a process
+  - a stable rule that was never reviewed; limits may instead be confirmed
+    by a process
 
 Usage:
     check_bundle.py BUNDLE_ROOT [--strict]
@@ -89,6 +93,16 @@ def parse_time(value) -> datetime | None:
         return None
 
 
+def all_reviewers(meta: dict) -> int:
+    events = meta.get("verified") or []
+    if isinstance(events, dict):
+        events = [events]
+    return sum(1 for e in events if isinstance(e, dict) and e.get("by") and e.get("at"))
+
+
+OWNER_RE = re.compile(r"^(human|team):\S+$")
+
+
 def current_reviewers(meta: dict) -> set[str]:
     """Actor schemes of verification events that are current (OKF 5.3)."""
     generated = meta.get("generated") or {}
@@ -134,6 +148,10 @@ def main() -> int:
         if match and match.group(1) not in tokens:
             errors.append(f"{token_path.name}: {path} points at missing token {{{match.group(1)}}}")
 
+    bundle_owner = (meta or {}).get("x-brand-owner")
+    if bundle_owner is not None and not OWNER_RE.match(str(bundle_owner)):
+        errors.append(f"index.md: x-brand-owner {bundle_owner!r} must be a human: or team: actor")
+
     default_vis = (meta or {}).get("x-brand-visibility-default")
     if default_vis is not None and default_vis not in VOCAB["x-brand-visibility"]:
         errors.append(f"index.md: x-brand-visibility-default {default_vis!r} is not public, internal or restricted")
@@ -153,6 +171,10 @@ def main() -> int:
             if value is not None and value not in allowed:
                 errors.append(f"{rel}: {key} {value!r} is not one of {', '.join(sorted(allowed))}")
 
+        owner = fm.get("x-brand-owner")
+        if owner is not None and not OWNER_RE.match(str(owner)):
+            errors.append(f"{rel}: x-brand-owner {owner!r} must be a human: or team: actor")
+
         rule_type = fm.get("x-brand-rule-type")
         if fm.get("x-brand-knowledge") == "derived" and rule_type:
             errors.append(f"{rel}: derived knowledge must not carry x-brand-rule-type; it is not a rule")
@@ -170,8 +192,11 @@ def main() -> int:
         if status == "stable" and rule_type:
             reviewers = current_reviewers(fm)
             confirmed = "human" in reviewers or (rule_type == "limit" and "process" in reviewers)
-            if not confirmed:
-                warnings.append(f"{rel}: stable {rule_type} without a current review by a person"
+            if not confirmed and all_reviewers(fm):
+                errors.append(f"{rel}: approved {rule_type} changed after its last review; "
+                              "the last approved version in Git applies until the change is reviewed")
+            elif not confirmed:
+                warnings.append(f"{rel}: stable {rule_type} that was never reviewed by a person"
                                 + (" or process" if rule_type == "limit" else ""))
 
     for path in sorted(tokens):

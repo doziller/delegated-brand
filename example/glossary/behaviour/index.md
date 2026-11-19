@@ -1,3 +1,3 @@
 # Behaviour
 
-* [When no one answers](when-no-one-answers.md) - If no answer arrives, nothing is charged and nothing is booked
+* [When no one answers](when-no-one-answers.md) - Nothing is charged, renewed or rejected without a person's yes

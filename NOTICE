@@ -30,10 +30,11 @@ Third-party references:
   Ideas from other authors are credited with links in README.md under
   "Sources and ideas". No text from those sources is included.
 
-  Fraunces, named in example/tokens.json, is a typeface by Undercase Type
-  under the SIL Open Font License. Only its name is used; no font files
-  are included.
+  IBM Plex Sans, named in example/tokens.json, is a typeface by IBM under
+  the SIL Open Font License. Only its name is used; no font files are
+  included.
 
-The brand "Kiln" in example/ is fictional. Any resemblance to a real
-business of that name is coincidental. Names, addresses and figures in it
-are invented; the domain kiln.example is reserved for examples.
+The company "Kurbelwerk Hessling" in example/ is fictional. Any resemblance
+to a real business is coincidental. Names, people, figures and documents in
+it are invented; the domains hessling.example and example.com are reserved
+for examples. The EU regulation it links to is real.

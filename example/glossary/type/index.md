@@ -1,3 +1,3 @@
 # Type
 
-* [Headline](headline.md) - Draft. Says one thing, in words a regular would use at the counter
+* [Headline](headline.md) - Draft. Says the one thing that will still be true later

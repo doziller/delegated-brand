@@ -16,8 +16,9 @@ Work in this order:
 
 1. **Interview me first.** Before writing anything, ask me these questions, a few at a time, and wait for my answers:
    - Who decides on the brand, and who should agents hand over to? (the owner)
+   - Do other people own parts of it, for example Legal for claims, Sales for quotes, Product for specifications?
    - What is the one idea the brand applies everywhere, in one sentence?
-   - Which facts may copy use: names, address, hours, prices, claims? Which claims must never be made?
+   - Which facts may copy use: names, address, prices, claims? Which of them live in other systems (price lists, product database, certificates)? Which claims must never be made?
    - Which colours, fonts and other values does it use, and where are they defined?
    - How does the brand write? Give me two sentences that sound right and two that sound wrong.
    - Which words or styles does it never use?

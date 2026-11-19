@@ -16,7 +16,7 @@
 
 ## Example
 
-- [example/index.md](example/index.md): Kiln, a fictional brand with every rule type and trust state
+- [example/index.md](example/index.md): Kurbelwerk Hessling, a fictional manufacturer with every rule type, several owners and an agent that handles quotes
 
 ## Optional
 

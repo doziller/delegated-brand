@@ -1,3 +1,3 @@
 # Imagery
 
-* [Natural light](natural-light.md) - Prefer photos in daylight, at the studio or the café
+* [Workshop light](workshop-light.md) - Prefer photos in daylight, in use, with signs of use

@@ -1,8 +1,9 @@
 # Glossary
 
-* [Colour](color/) - Clay, Linen, and the retired Accent
+* [Colour](color/) - Brass, Paper, and the retired Signal Red
 * [Type](type/) - Headline
-* [Imagery](imagery/) - Natural light
-* [Voice](voice/) - Plain language and words Kiln never uses
-* [Principles](principles/) - Clarity over charm, and who decides
-* [Behaviour](behaviour/) - If no answer arrives, nothing is charged and nothing is booked
+* [Voice](voice/) - Plain and exact, trade voice, banned words
+* [Claims](claims/) - Food-contact and durability claims. Owned by Legal
+* [Imagery](imagery/) - Workshop light
+* [Principles](principles/) - Exact over warm, and who decides
+* [Behaviour](behaviour/) - What the quote assistant and the shop do when no one answers

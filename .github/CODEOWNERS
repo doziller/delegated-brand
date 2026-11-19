@@ -1,0 +1,12 @@
+# Who must approve changes, enforced by GitHub when branch protection
+# requires a review from code owners (Settings > Branches > Require review
+# from Code Owners).
+#
+# Replace the examples with real GitHub users or teams and remove the #.
+# Mirror the owners named in bundle/index.md (x-brand-owner) and in single
+# rules (x-brand-owner on a concept).
+#
+# /bundle/                          @your-brand-lead
+# /bundle/glossary/claims/          @your-legal-lead
+# /bundle/glossary/voice/trade-*    @your-sales-lead
+# /bundle/tokens.json               @your-design-system-team
