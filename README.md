@@ -253,7 +253,7 @@ Detailed guidance will follow in *A Guide to Building Brand Infrastructure*, ann
 
 ## Cite
 
-Ziller, D. (2026). *Delegated Brand: a reference implementation of Brand as Infrastructure* (Version 0.1.2). DZGN Research. https://github.com/doziller/delegated-brand
+Ziller, D. (2026). *Delegated Brand: a reference implementation of Brand as Infrastructure* (Version 0.1.3). DZGN Research. https://github.com/doziller/delegated-brand
 
 Machine-readable: `CITATION.cff`. For the frame and the evidence, cite the [Brand Infrastructure Report 2026](https://dzgn.work/brand-infrastructure-report-2026/).
 
