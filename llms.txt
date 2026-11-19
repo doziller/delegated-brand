@@ -1,0 +1,27 @@
+# Delegated Brand
+
+> A reference implementation of Brand as Infrastructure, built to test The Delegated Brand (Dominik Ziller, DZGN Research). A template for a brand that people and AI agents read from the same files, following the Open Knowledge Format v0.3. Read AGENTS.md first.
+
+## Start here
+
+- [AGENTS.md](AGENTS.md): read order, answering rules (yes, no, handover), revision rules
+- [README.md](README.md): what each part is, why it exists, how the parts connect
+
+## Template
+
+- [bundle/index.md](bundle/index.md): entry point, owner, token file, reading list by task
+- [bundle/core.md](bundle/core.md): the one idea, read first
+- [bundle/facts.md](bundle/facts.md): the only source for facts
+- [bundle/glossary/](bundle/glossary/index.md): rule templates
+
+## Example
+
+- [example/index.md](example/index.md): Kiln, a fictional brand with every rule type and trust state
+
+## Optional
+
+- [prompts/new-brand.md](prompts/new-brand.md): set up a new brand with an agent
+- [prompts/use-brand.md](prompts/use-brand.md): brief an agent with the bundle
+- [evals/rubric.md](evals/rubric.md): review checklist
+- [evals/README.md](evals/README.md): test cases
+- [Brand Infrastructure Report 2026](https://dzgn.work/brand-infrastructure-report-2026/): the frame and the evidence

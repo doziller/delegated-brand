@@ -1,0 +1,24 @@
+name: Validate bundles
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        bundle: [bundle, example]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Fetch the OKF validator
+        run: git clone --depth 1 https://github.com/open-knowledge-format/open-knowledge-format /tmp/okf
+      - name: OKF conformance
+        run: python /tmp/okf/skills/okf-generate/scripts/validate.py ${{ matrix.bundle }}
+      - name: Brand rules and token references
+        run: python scripts/check_bundle.py ${{ matrix.bundle }}
