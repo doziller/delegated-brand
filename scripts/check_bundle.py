@@ -18,9 +18,13 @@ Warnings (exit 0, or 1 with --strict):
   - an approval without x-brand-hash: it is not bound to the content, so a
     later change cannot be detected
   - a stable rule that was never approved
+  - a draft that carries earlier approvals: an approved rule may have been
+    set back to draft and changed
   - a public semantic token that no brand term points at
 
-What this check cannot know: who actually ran approve.py. Anyone who can
+What this check cannot know: who actually ran approve.py, and whether a
+token value changed. Rules point at tokens; the token values belong to the
+design system and are not part of a rule's approval. Anyone who can
 edit the files can also re-approve them. Restrict that with CODEOWNERS and
 branch protection.
 
@@ -146,6 +150,9 @@ def check(root: Path) -> tuple[list[str], list[str]]:
             elif status != "deprecated":
                 referenced.add(ref)
 
+        if status == "draft" and rule_type and events(fm):
+            warnings.append(f"{rel}: draft with earlier approvals. If this rule was approved before, "
+                            "the last approved version in Git still applies; check the history")
         if status != "stable" or not rule_type:
             continue
 

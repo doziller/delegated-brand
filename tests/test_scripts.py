@@ -14,7 +14,7 @@ REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "scripts"))
 
 from check_bundle import check  # noqa: E402
-from export_public import export  # noqa: E402
+from export_public import MARKER, export, unsafe_target  # noqa: E402
 
 
 def copy_example(tmp: Path) -> Path:
@@ -84,6 +84,14 @@ class CheckBundle(unittest.TestCase):
         edit(self.bundle / "glossary/voice/trade-voice.md", 'x-brand-owner: "human:lars-becker"', 'x-brand-owner: "lars"')
         self.assertTrue(any("x-brand-owner" in e for e in self.errors()))
 
+    def test_demoted_approved_rule_warns(self):
+        rule = self.bundle / "glossary/color/brass.md"
+        edit(rule, "status: stable", "status: draft")
+        edit(rule, "Never as a background.", "Fine as a background.")
+        errors, warnings = check(self.bundle.resolve())
+        self.assertEqual(errors, [])
+        self.assertTrue(any("draft with earlier approvals" in w for w in warnings))
+
     def test_bad_vocabulary_fails(self):
         edit(self.bundle / "glossary/imagery/workshop-light.md", "x-brand-rule-type: preference",
              "x-brand-rule-type: maybe")
@@ -123,9 +131,44 @@ class ExportPublic(unittest.TestCase):
         self.assertIn("brand-accent", tokens["color"])
         self.assertGreaterEqual(self.removed_tokens, 1)
 
+    def test_marker_written(self):
+        self.assertTrue((self.out / MARKER).exists())
+
     def test_export_still_passes_check(self):
         self.assertEqual(check(self.out.resolve())[0], [])
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ExportTargetSafety(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.bundle = copy_example(self.tmp)
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp)
+
+    def test_refuses_parent_of_bundle(self):
+        self.assertIsNotNone(unsafe_target(self.bundle.resolve(), self.tmp.resolve()))
+        with self.assertRaises(ValueError):
+            export(self.bundle.resolve(), self.tmp.resolve())
+        self.assertTrue((self.bundle / "index.md").exists())
+
+    def test_refuses_target_inside_bundle(self):
+        self.assertIsNotNone(unsafe_target(self.bundle.resolve(), (self.bundle / "out").resolve()))
+
+    def test_refuses_foreign_non_empty_folder(self):
+        other = self.tmp / "other"
+        other.mkdir()
+        (other / "keep.txt").write_text("important")
+        with self.assertRaises(ValueError):
+            export(self.bundle.resolve(), other.resolve())
+        self.assertTrue((other / "keep.txt").exists())
+
+    def test_replaces_its_own_earlier_export(self):
+        out = (self.tmp / "public").resolve()
+        export(self.bundle.resolve(), out)
+        export(self.bundle.resolve(), out)
+        self.assertTrue((out / "index.md").exists())

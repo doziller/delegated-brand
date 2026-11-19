@@ -172,9 +172,11 @@ A repository can enforce some of the governance, not all of it.
 | Mechanism | How | Enforced? |
 | --- | --- | --- |
 | An approved rule changes after approval | `approve.py` stores a fingerprint of the content; `check_bundle.py` fails if the rule no longer matches it | Yes, in CI. But anyone who can edit files can also re-approve. Who may do that is controlled by the next line |
-| Who may change and approve which files | `.github/CODEOWNERS` plus branch protection on GitHub | Yes, once you set it up on GitHub |
+| An approved rule is set back to `draft` and changed | `check_bundle.py` warns when a draft carries earlier approvals; the last approved version in Git still applies | Partly. A warning, because drafts may change. CODEOWNERS decides who may do it |
+| A token value changes | Token values belong to the design system, not to the rule's approval | No. A rule points at a token; its approval does not cover the value. Protect `tokens.json` with CODEOWNERS for the design system team |
+| Who may change and approve which files | `.github/CODEOWNERS` plus branch protection on GitHub | Yes, once you set it up on GitHub. The file ships with commented examples; fill in real owners |
 | Token references and field values | `check_bundle.py` | Yes, in CI |
-| Internal rules and tokens reach partners | `export_public.py` leaves out what is marked non-public | Partly. It cannot find internal facts written into public text. Read the export before sharing |
+| Internal rules and tokens reach partners | `export_public.py` leaves out what is marked non-public, and only ever replaces its own earlier exports | Partly. It cannot find internal facts written into public text. Read the export before sharing |
 | An agent answers yes, no or handover | `AGENTS.md` | No. Described; depends on the agent and its tools |
 | An agent publishes or acts with money | `AGENTS.md`, behaviour rules | No. Permissions belong in the systems the agent uses |
 | Whether rules contradict each other | People, evals | No |

@@ -11,6 +11,9 @@ What it does:
   - leaves out every log.md, which may describe internal decisions
   - leaves out tokens marked non-public in the token file, using
     "$extensions": {"x-brand-visibility": "internal"} on a token or group
+  - refuses to write into a folder that contains the bundle, or into a
+    non-empty folder it did not create itself (it replaces only its own
+    earlier exports)
   - removes links to left-out concepts: a list line whose only links point
     to left-out concepts is removed; elsewhere the link text stays and the
     link goes, so table rows and sentences keep their public content
@@ -34,6 +37,7 @@ except ImportError:
     print("export_public.py needs PyYAML: pip install pyyaml", file=sys.stderr)
     sys.exit(2)
 
+MARKER = ".delegated-brand-export"
 LINK_RE = re.compile(r"\[([^\]]*)\]\(([^)\s]+)\)")
 LIST_ITEM_RE = re.compile(r"^\s*[*-]\s")
 
@@ -72,7 +76,23 @@ def _iter_tokens(node: dict):
                 yield from _iter_tokens(value)
 
 
+def unsafe_target(root: Path, out: Path) -> str | None:
+    """Return why OUT_DIR must not be used, or None if it is safe to replace."""
+    if out == root or root in out.parents:
+        return "OUT_DIR must be outside the bundle"
+    if out in root.parents:
+        return "OUT_DIR must not contain the bundle"
+    if out.exists() and not out.is_dir():
+        return "OUT_DIR exists and is not a folder"
+    if out.exists() and any(out.iterdir()) and not (out / MARKER).exists():
+        return "OUT_DIR exists and is not empty. Use a new folder, or one written by an earlier export"
+    return None
+
+
 def export(root: Path, out: Path) -> tuple[list[Path], int]:
+    problem = unsafe_target(root, out)
+    if problem:
+        raise ValueError(problem)
     meta, _ = split(root / "index.md")
     default = (meta or {}).get("x-brand-visibility-default", "public")
 
@@ -87,6 +107,8 @@ def export(root: Path, out: Path) -> tuple[list[Path], int]:
     if out.exists():
         shutil.rmtree(out)
     shutil.copytree(root, out, ignore=shutil.ignore_patterns(".*", "log.md"))
+    (out / MARKER).write_text("Written by export_public.py. This folder is replaced on the next export.\n",
+                              encoding="utf-8")
     for path in hidden:
         (out / path.relative_to(root)).unlink()
 
@@ -124,8 +146,9 @@ def main() -> int:
         print(__doc__)
         return 2
     root, out = Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve()
-    if out == root or root in out.parents:
-        print("error: OUT_DIR must be outside the bundle", file=sys.stderr)
+    problem = unsafe_target(root, out)
+    if problem:
+        print(f"error: {problem}", file=sys.stderr)
         return 2
     hidden, removed_tokens = export(root, out)
     for path in hidden:
