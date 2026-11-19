@@ -3,6 +3,8 @@
 **A reference implementation of Brand as Infrastructure, built to test The Delegated Brand.**
 By [Dominik Ziller](https://dzgn.work/about/), [DZGN Research](https://dzgn.work/research/).
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24362616.svg)](https://doi.org/10.5281/zenodo.24362616)
+
 A template for a brand that people and AI agents read from the same files. Agents may draft rules. Only people approve them. Plain Markdown in Git, following the [Open Knowledge Format (OKF) v0.3](https://github.com/open-knowledge-format/open-knowledge-format).
 
 ## Start here
@@ -253,9 +255,9 @@ Detailed guidance will follow in *A Guide to Building Brand Infrastructure*, ann
 
 ## Cite
 
-Ziller, D. (2026). *Delegated Brand: a reference implementation of Brand as Infrastructure* (Version 0.1.3). DZGN Research. https://github.com/doziller/delegated-brand
+Ziller, D. (2026). *Delegated Brand: a reference implementation of Brand as Infrastructure* (Version 0.1.3). DZGN Research. https://doi.org/10.5281/zenodo.24362616
 
-Machine-readable: `CITATION.cff`. For the frame and the evidence, cite the [Brand Infrastructure Report 2026](https://dzgn.work/brand-infrastructure-report-2026/).
+The DOI above always points to the latest version. Each release also has its own DOI on Zenodo. Machine-readable: `CITATION.cff`. For the frame and the evidence, cite the [Brand Infrastructure Report 2026](https://dzgn.work/brand-infrastructure-report-2026/).
 
 ## Author
 
